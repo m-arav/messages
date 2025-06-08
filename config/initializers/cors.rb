@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "messages-ui-zkd1.onrender.com"
+    origins "messages-ui-zkd1.onrender.com", "http://localhost:4200"
 
     resource "*",
       headers: :any,
