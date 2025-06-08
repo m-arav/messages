@@ -302,6 +302,6 @@ production:
   clients:
     default:
       uri: <%= ENV['MONGODB_URI'] %>
-    options:
+      options:
         ssl: true
         ssl_verify: false
