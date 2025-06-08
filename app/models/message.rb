@@ -4,7 +4,7 @@ class Message
   field :to, type: String
   field :body, type: String
   field :sid, type: String
-  field :status, type: String
+  field :status, type: String, default: "queued"
   belongs_to :user
 
   after_create :send_sms
