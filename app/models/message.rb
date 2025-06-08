@@ -9,6 +9,9 @@ class Message
 
   after_create :send_sms
 
+  validates :body, presence: true, length: { minimum: 1, maximum: 250 }
+  validates :to, presence: true, format: { with: /\A\+?\d{10,15}\z/, message: "must be a valid phone number" }
+
   private
 
   def send_sms
