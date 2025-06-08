@@ -5,9 +5,9 @@ class TwilioClient
 
   def send(message)
     @client.messages.create(
+      messaging_service_sid: text_service_sid,
       to: to_number,
-      body: message.body,
-      from: from_number
+      body: message.body
     )
   end
 
@@ -26,8 +26,7 @@ class TwilioClient
     Rails.application.credentials.twilio[:to_phone_number]
   end
 
-  # Twilio virtual number
-  def from_number
-    Rails.application.credentials.twilio[:from_phone_number]
+  def text_service_sid
+    Rails.application.credentials.twilio[:messaging_service_sid]
   end
 end
