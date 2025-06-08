@@ -1,9 +1,10 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_message, only: %i[ show update destroy ]
 
   # GET /messages
   def index
-    @messages = Message.all
+    @messages = current_user.messages.all
 
     render json: @messages
   end
@@ -15,7 +16,7 @@ class MessagesController < ApplicationController
 
   # POST /messages
   def create
-    @message = Message.new(message_params)
+    @message = current_user.messages.new(message_params)
 
     if @message.save
       render json: @message, status: :created, location: @message
@@ -46,6 +47,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.expect(message: [ :to, :body, :user ])
+      params.expect(message: [ :to, :body ])
     end
 end
